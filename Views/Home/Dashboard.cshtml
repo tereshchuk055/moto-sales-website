@@ -1,0 +1,133 @@
+﻿@model HomeDashboardViewModel;
+@{
+    ViewData[$"{DataResource.Title}"] = "Dashboard";
+}
+
+@if (!string.IsNullOrEmpty(@ViewData[$"{DataResource.Info}"]?.ToString()))
+{
+    <div class="bg-green-100 p-5 mt-3 w-3/5 mx-auto rounded" id="Message">
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     class="flex-none fill-current text-green-500 h-4 w-4">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 16.518l-4.5-4.319 1.396-1.435 3.078 2.937 6.105-6.218 1.421 1.409-7.5 7.626z" />
+                </svg>
+                <div class="flex-1 leading-tight text-sm text-green-700 font-medium">@ViewData[$"{DataResource.Info}"]</div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 class="flex-none fill-current text-green-600 h-3 w-3" id="close-message">
+                <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" />
+            </svg>
+        </div>
+    </div>
+}
+@if (!string.IsNullOrEmpty(@ViewData[$"{DataResource.Error}"]?.ToString()))
+{
+    <div class="bg-red-100 p-5 mt-3 w-3/5 mx-auto rounded flex justify-between align-middle" id="Message">
+            <div class=" flex flex-row items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-current text-red-500 h-4 w-4 pb-1">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.597 17.954l-4.591-4.55-4.555 4.596-1.405-1.405 4.547-4.592-4.593-4.552 1.405-1.405 4.588 4.543 4.545-4.589 1.416 1.403-4.546 4.587 4.592 4.548-1.403 1.416z" />
+                </svg>
+            <div class="text-sm px-1 pb-1 font-medium text-red-700">@ViewData[$"{DataResource.Error}"]</div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             class="flex align-center fill-current text-red-600 h-3 w-3 mt-1" id="close-message">
+                <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" />
+            </svg>
+    </div>
+}
+<div class="w-4/5 mx-auto flex justify-between mt-4">
+    <div class="flex flex-col font-medium">
+        <a asp-controller="Brand" asp-action="Create" class="hover:cursor-pointer inline-flex px-5 py-3 text-white bg-orange-600 hover:bg-orange-700 focus:bg-orange-700 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Create Brand
+        </a>
+        <a asp-controller="Brand" asp-action="Settings" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+            Manage Brands
+        </a>
+    </div>
+
+    <div class="flex flex-col font-medium">
+        <a asp-controller="Model" asp-action="Create" class="hover:cursor-pointer inline-flex px-5 py-3 text-white bg-orange-600 hover:bg-orange-700 focus:bg-orange-700 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Create Model
+        </a>
+        <a asp-controller="Model" asp-action="Settings" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+            Manage Models
+        </a>
+    </div>
+
+    <div class="flex flex-col font-medium">
+        <a asp-controller="Type" asp-action="Create" class="hover:cursor-pointer inline-flex px-5 py-3 text-white bg-orange-600 hover:bg-orange-700 focus:bg-orange-700 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Create Type
+        </a>
+        <a asp-controller="Type" asp-action="Settings" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+            Manage Types
+        </a>
+    </div>
+
+    <div class="flex flex-col font-medium">
+        <a asp-controller="Motorcycle" asp-action="Create" class="hover:cursor-pointer inline-flex px-5 py-3 text-white bg-orange-600 hover:bg-orange-700 focus:bg-orange-700 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Create Motorcycle
+        </a>
+        <a asp-controller="Motorcycle" asp-action="Settings" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+            Manage Motorcycles
+        </a>
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="flex flex-col font-medium">
+            <a asp-controller="Home" asp-action="Backup" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                Download Backup
+            </a>
+            <a asp-controller="Account" asp-action="Settings" class="hover:cursor-pointer inline-flex px-5 py-3 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors duration-300 border border-orange-600 rounded-md mb-3">
+                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                Manage Accounts
+            </a>
+        </div>
+    }
+</div>
+
+<div class="mx-3 mt-1 flex justify-around ">
+    <div id="container1" style="width: 500px; height: 400px;">
+    </div>
+    <div id="container2" style="width: 500px; height: 400px;">
+    </div>
+    <div id="container3" style="width: 500px; height: 400px;">
+    </div>
+</div>
+
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
+
+<script src="~/js/HomeDashboard.js"></script>

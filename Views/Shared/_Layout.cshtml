@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData[$"{DataResource.Title}"] - MotoShop</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/acc4225da3.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body class="bg-gray-200">
+    <header class="bg-white shadow-md mb-0 py-2 md:py-4">
+        <div class="container px-4 mx-auto md:flex md:items-center">
+            <div class="flex justify-between items-center">
+                <a asp-controller="Home" asp-action="Index" class="text-2xlflex">
+                    <img src="~/images/Logo.png" class=" max-h-logo"/>
+                </a>
+                <button class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden" id="navbar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
+                <a asp-controller="Home" asp-action="Index" class="p-2 sm:text-center lg:px-4 md:mx-2 text-white font-semibold rounded bg-orange-600">Home</a>
+                <a asp-controller="Motorcycle" asp-action="Index" class="p-2 sm:text-center lg:px-4 md:mx-2 text-gray-600 font-semibold rounded hover:bg-gray-200 transition-colors duration-300">Catalogue</a>
+                <a asp-controller="Motorcycle" asp-action="Prices" class="p-2 lg:px-4 sm:text-center md:mx-2 text-gray-600 font-semibold rounded hover:bg-gray-200 transition-colors duration-300">Prices</a>
+                <a asp-controller="Order"  asp-action="Index" class="p-2 lg:px-4 sm:text-center md:mx-2 text-gray-600 font-semibold rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">My Orders</a>
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    {
+                        <a asp-controller="Home" asp-action="Dashboard" class="p-2 lg:px-4 sm:text-center md:mx-2 text-gray-600 font-semibold rounded hover:bg-gray-200 transition-colors duration-300">Dashboard</a>
+
+                    }
+                    <a asp-controller="Account" asp-action="Logout" class="p-2 lg:px-4 md:mx-2 text-orange-600 text-center border border-transparent font-semibold rounded hover:bg-orange-100 hover:text-orange-700 transition-colors duration-300">Sign Out</a>
+                    <a asp-controller="Customer" asp-action="Index" class="md:mx-2  mt-1 md:mt-0 md:ml-1">
+                        <div id="avatarBlock" class="flex-row justify-between items-center max-h-avatar">
+                            <img src="~/images/avatar.png" class="max-h-avatar border border-solid overflow-hidden border-orange-600 rounded-full" />
+                            <span id="profileSpan" class="text-orange-600 w-full text-center ml-negative hidden">Profile</span>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="p-2 lg:px-4 md:mx-2 text-orange-600 text-center border border-transparent font-semibold rounded hover:bg-orange-100 hover:text-orange-700 transition-colors duration-300">Sign In</a>
+                    <a asp-controller="Account" asp-action="SignUp" class="p-2 lg:px-4 md:mx-2 text-orange-600 text-center border border-solid border-orange-600 font-semibold rounded hover:bg-orange-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">Sign Up</a>
+                }
+                
+            </div>
+        </div>
+    </header>
+
+    <main role="main" class="w-100">
+        @RenderBody()
+    </main>
+
+    <footer>
+        
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
